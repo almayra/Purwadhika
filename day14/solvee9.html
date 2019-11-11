@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <center>
+        <label>Masukkan angka 1:</label>
+        <input type="text" id="angka1"><br><br>
+        <label>Masukkan angka 2:</label>
+        <input type="text" id="angka2"><br><br>
+        <button onclick="kali()" >kali x </button>
+        <button onclick="bagi()" >bagi : </button>
+        <button onclick="tambah()" >tambah + </button>
+        <button onclick="kurang()" >kurang - </button><br><br>
+        <button onclick="modulus()" >modulus % </button>
+        <button onclick="pangkat()" >pangkat ^ </button>
+        <h3 id="output"> </h3>
+    </center>
+</body>
+<script>
+    const kali=()=>{
+        var input=parseInt(document.getElementById('angka1').value)
+        var input2=parseInt(document.getElementById('angka2').value) 
+        var hasilkali = input*input2
+        document.getElementById('output').innerHTML=`Hasilnya adalah ${input} x ${input2} = ${hasilkali}`
+    }
+    const bagi=()=>{
+        var input=parseInt(document.getElementById('angka1').value)
+        var input2=parseInt(document.getElementById('angka2').value )
+        var hasilbagi = input/input2
+        document.getElementById('output').innerHTML=`Hasilnya adalah ${input} / ${input2} = ${hasilbagi}`
+    }
+    const tambah=()=>{
+        var input=parseInt(document.getElementById('angka1').value)
+        var input2=parseInt(document.getElementById('angka2').value) 
+        var hasiltambah = (input+input2)
+        document.getElementById('output').innerHTML=`Hasilnya adalah ${input} + ${input2} = ${hasiltambah}`
+    }
+    const kurang=()=>{
+        var input=parseInt(document.getElementById('angka1').value)
+        var input2=parseInt(document.getElementById('angka2').value) 
+        var hasilkurang = (input-input2)
+        document.getElementById('output').innerHTML=`Hasilnya adalah ${input} - ${input2} = ${hasilkurang}`
+    }
+    const modulus=()=>{
+        var input=parseInt(document.getElementById('angka1').value)
+        var input2=parseInt(document.getElementById('angka2').value) 
+        var hasilmodulus = (input%input2)
+        document.getElementById('output').innerHTML=`Hasilnya adalah ${input} % ${input2} = ${hasilmodulus}`
+    }
+    const pangkat=()=>{
+        var input=parseInt(document.getElementById('angka1').value)
+        var input2=parseInt(document.getElementById('angka2').value) 
+        var hasilpangkat = Math.pow(input,input2)
+        document.getElementById('output').innerHTML=`Hasilnya adalah ${input}<sup>${input2}</sup> = ${hasilpangkat}`
+    }
+</script>
+</html>

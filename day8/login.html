@@ -1,0 +1,78 @@
+<html>
+    <script>
+        //ini punyaku
+        //function checknama(a){
+        //var a = ['aya', 'zamy']
+        //var konfirmasi = true
+        //while (konfirmasi) {
+          //  var user = prompt('1. Login \n 2. Register \n 3. Exit')
+            //if(user==1){
+              //  var login = prompt('Masukkan nama anda')
+            //}if(login==a){
+              //  alert('Selamat anda berhasil masuk')
+        //}
+        //}
+    //}
+
+    // function checknama(namalogin){
+    //     for(var i=0;i<datanama.length;i++){
+    //         if(datanama[i]==namalogin){
+    //             return true
+    //         }
+    //     }
+    //     return false
+    // }
+    // alert('Selamat datang di website kami')
+    // var datanama=['aya', 'cantik']
+    // do {
+    //     var menu=prompt('1. Login \n 2. Register \n 3. Exit')
+    //     if(menu==1){
+    //         var login = prompt('Masukkan nama kamu')
+    //         if(checknama(login)){
+    //             alert('Anda berhasil masuk')
+    //             break
+    //         }else{
+    //             alert('Nama tidak terdaftar, Silakan register')
+    //         }
+    //     }else if(menu==2){
+    //         var register = prompt('Masukkan nama untuk register')
+    //         datanama.push(register)
+    //         alert('Anda berhasil register')
+
+    //     }else{
+    //         alert('Selamat tinggal')
+    //         false
+    //     }
+    // } while (true);
+
+    function checknama(loginuser){
+        for(i=0;i<datanama.length;i++){
+            if(datanama[i]==loginuser){
+                return true
+            }
+        }
+        return false
+    }
+    alert('Selamat datang di website kami')
+    var datanama = ['aya', 'zamzamy']
+    do {
+        var menu = prompt('1. Login \n 2. Register \n 3. Exit')
+        if(menu==1){
+            var login = prompt('Masukkan nama anda')
+            if(checknama(login)){
+                alert('Anda berhasil masuk')
+                break
+            }else{
+                alert('Anda belum terdaftar, Silakan register')
+            }
+        }else if(menu==2){
+            var register = prompt('Masukkan nama anda')
+            datanama.push(register)
+            alert('Anda berhasil daftar')
+        }else{
+            alert('Anda salah input')
+            break
+        }
+    } while (true);
+    </script>
+</html>

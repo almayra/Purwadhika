@@ -1,0 +1,93 @@
+<style>html { background-color: #111111 }</style>
+<script>
+    let products = ['Apple', 'Orange', 'Strawberry', 'Watermelon'];
+    let prices = [5000, 4000, 10000, 15000];
+    let cartProducts = [];
+    let cartPrices = [];
+
+    function login() {
+        const input = prompt('\nWelcome, do you want to login as (1) user or (2) admin ?\n');
+        if (input === '1') {
+            user();
+        } else if (input === '2') {
+            admin();
+        } else {
+            alert('\nThank you !\n');
+        }
+    }
+    function user() {
+        const input = prompt(`\n${list(cartProducts, cartPrices)}\nWould you like to (1) add or (2) remove item from cart?\n`);
+        if (input === '1') {
+            addToCart();
+        } else if (input === '2') {
+            removeFromCart();
+        } else {
+            alert('\nPlease pay Rp ' + cartPrices.reduce((a, b) => a + b, 0));
+        }
+    }
+    function addToCart() {
+        const input = parseInt(prompt(`\n${list(products, prices)}\nWhich product do you want to add ?\n`));
+        const index = cartProducts.indexOf(products[input - 1]);
+        if (index === -1) {
+            cartProducts.push(products[input - 1]);
+            cartPrices.push(prices[input - 1]);
+        } else {
+            cartPrices[index] += prices[input - 1];
+        }
+        user();
+    }
+    function removeFromCart() {
+        const input = parseInt(prompt(`\n${list(products, prices)}\nWhich product do you want to remove ?\n`));
+        cartProducts.slice(input - 1, 1);
+        cartPrices.slice(input - 1, 1);
+        user();
+    }
+    function admin() {
+        const input = prompt(`\n${list(products, prices)}\nWould you like to (1) add (2) remove or (3) edit product?\n`);
+        if (input === '1') {
+            add();
+        } else if (input === '2') {
+            remove();
+        } else if (input === '3') {
+            edit();
+        } else {
+            login();
+        }
+    }
+    function list(product, price) {
+        let output = '';
+        for (let i = 0; i < product.length; i++) {
+            output += `${i + 1}. ${product[i]} : ${price[i]}\n`;
+        }
+        return output;
+    }
+    function add() {
+        const name = prompt(`\n${list(products, prices)}${products.length + 1}. { ... }\n`);
+        const price = prompt(`\n${list(products, prices)}${prices.length + 1}. ${name} : Rp { ... } \n`);
+        products.push(name);
+        prices.push(parseInt(price));
+        admin();
+    }
+    function remove() {
+        const input = prompt(`\n${list(products, prices)}\nWhich product do you want to remove ?\n`);
+        products.splice(parseInt(input) - 1, 1);
+        prices.splice(parseInt(input) - 1, 1);
+        admin();
+    }
+    function edit() {
+        const input = parseInt(prompt(`\n${list(products, prices)}\nWhich product do you want to edit ?\n`));
+        let output = ''
+        for (let i = 0; i < products.length; i++) {
+            if (input !== i + 1) {
+                output += `${i + 1}. ${products[i]} : ${prices[i]}\n`;
+            } else {
+                output += `${i + 1}. { ... } : ${prices[i]}\n`;
+            }
+        }
+        products[input - 1] = prompt(`\n${output}\n`);
+        prices[input - 1] = '{ ... }';
+        prices[input -1] = parseInt(prompt(`\n${list(products, prices)}\n`));
+        admin();
+    }
+    login();
+</script>

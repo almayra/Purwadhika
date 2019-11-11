@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>To Do List</title>
+    <style>
+        tr,td,table{
+            border: 1px solid darksalmon;
+            border-collapse: collapse;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <center>
+        <h1>Latihan Array of Object</h1>
+        <table>
+            <thead>
+                <tr>
+                    <td>NO.</td>
+                    <td>TO DO</td>
+                    <td>DAY</td>
+                    <td>IMG</td>
+                    <td>ACT</td>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td></td>
+                    <td><input type="text" class="addtodo"/></td>
+                    <td>
+                        <select class="addtodo">
+                            <option>Senin</option>
+                            <option>Selasa</option>
+                            <option>Rabu</option>
+                            <option>Kamis</option>
+                            <option>Jumat</option>
+                            <option>Sabtu</option>
+                            <option>Minggu</option>
+                        </select>
+                    </td>
+                    <td><input type="text" class="addtodo"/></td>
+                    <td><button onclick="onAddToDoClick()">add</button></td>
+                </tr>
+            </tfoot>
+        </table>
+        <br><br>
+        <label>Cari Kegiatan:</label>
+        <input type="text" id="cari">
+        <button onclick="cari()" >Klik disini</button><br><br>
+        <label>Cari Hari:</label>
+        <td>
+            <select id="carihari">
+                <option>Allday</option>
+                <option>Senin</option>
+                <option>Selasa</option>
+                <option>Rabu</option>
+                <option>Kamis</option>
+                <option>Jumat</option>
+                <option>Sabtu</option>
+                <option>Minggu</option>
+            </select>
+        </td>
+        <button onclick="carihari()">Klik disini</button>
+    </center>
+</body>
+<script>
+    class Todo{
+        constructor(a,b,c){
+            this.kegiatan=a,
+            this.hari=b,
+            this.gambar=c
+        }
+    }
+    var listdata=[
+        new Todo('Tidur','Senin',`https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTK6KhN6f-M1llwdVm_fEJEg9ITzuvZp2no0hdlIi-uGyVLqUYu`),
+        new Todo('Jalan','Selasa',`https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcST5tmWP8AzQHzWTRPYi_i8LVNAzn-S4rFGowur8AmWrkfOuIbR`),
+        new Todo('Nongkrong','Sabtu',`https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRzrdmUPQwYd4jkfe148MlH1tkn4Dq7-algU9qtiBfwTxAucZap`),
+    ]
+    const Printdata=(a)=>{
+        var output=''
+        a.forEach((val,index) => {
+            if(index==indexedit){
+                output+=`<tr>
+                    <td>${index+1}.</td>
+                    <td>${val.kegiatan}</td>
+                    <td>${val.hari}</td>
+                    <td><img src=${val.gambar} height='100px'/></td>
+                    <td><button onclick='hapus(${index})'>delete</button><button onclick='ubah(${index})'>edit</button></td>
+                </tr>`
+            }
+        });
+        document.getElementsByTagName('tbody')[0].innerHTML=output
+    }
+    Printdata(listdata)
+    const onAddToDoClick=()=>{
+        var input = document.getElementsByClassName('addtodo')
+        var todobaru = input[0].value 
+        var haribaru = input[1].value
+        var imagebaru = input[2].value
+        listdata.push(new Todo(todobaru,haribaru,imagebaru))
+        console.log(listdata)
+        Printdata(listdata)
+    }
+    Printdata(listdata)
+
+    const hapus=(index)=>{
+        let hapusAsk=confirm('Anda yakin ingin menghapus?')
+        if(hapusAsk==true){
+            listdata.splice(index,1)
+        Printdata(listdata)     
+        }else{
+            alert('Batal')
+            Print(data)
+        }
+    }
+    const ubah=(index)=>{
+        var editAsk=prompt('Apa yang anda ingin ubah?\n1.To Do \n2.Day \n3.IMG \n4.Cancel')
+        if(editAsk==1){
+            var edit=prompt('Ingin kegiatan apa?')
+            listdata[index].kegiatan=edit
+            Printdata(listdata)
+        }else if(editAsk==2){
+            var harii=prompt('Ingin hari apa?')
+            listdata[index].hari=harii
+            Printdata(listdata)
+        }else if(editAsk==3){
+            var gambarr=prompt('Ingin gambar apa?')
+            listdata[index].gambar=gambarr
+            Printdata(listdata)
+        }else{
+            Printdata(listdata)
+        }
+    }
+    const cari=()=>{
+        listdata=listdata.filter(a=>a.kegiatan==document.getElementById('cari').value)
+        Printdata(listdata)
+    }
+    const carihari=()=>{
+        listdata=listdata.filter(b=>b.hari==document.getElementById('carihari').value)
+        Printdata(listdata)
+    }
+</script>
+</html>

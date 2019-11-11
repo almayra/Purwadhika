@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+    <style>
+        body{
+            margin: 2em;
+            background-color: #ffddcc;
+            font-family: "Lucida Console", Monaco, monospace;
+            font-size: 14px;
+        }
+        tr,td,table{
+            border: 2px solid #993300;
+            border-collapse: collapse;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <center>
+    <table>
+        <thead>
+            <tr>
+                <td>No.</td>
+                <td>To Do</td>
+                <td>Day</td>
+                <td>Image</td>
+                <td>Edit</td>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td></td>
+                <td><input type="text" class="addtodo" placeholder="Enter to do name"></td>
+                <td>
+                    <select class="addtodo">
+                        <option>Senin</option>
+                        <option>Selasa</option>
+                        <option>Rabu</option>
+                        <option>Kamis</option>
+                        <option>Jumat</option>
+                        <option>Sabtu</option>
+                        <option>Minggu</option>
+                    </select>
+                </td>
+                <td><input type="text" class="addtodo" placeholder="Enter image url"></td>
+                <td><button onclick="add()">Add</button></td>
+            </tr>
+        </tfoot>
+    </table>
+    <br><br>
+    <label>Search: </label>
+    <input type="text" id="cari">
+    <br><br>
+    <button onclick="cari()">Click here!</button>
+    </center>
+</body>
+<script>
+    class todo{
+        constructor(a,b,c){
+            this.activity=a
+            this.day=b
+            this.image=c
+        }
+    }
+    let data=[
+        new todo('Sekolah','Senin','https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQiU-hOfIPKCyUM2qP1b2C7beCSSSfxsBI3iA-73efRyFKFHho9'),
+        new todo('Kintan','Sabtu','https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQycGFToqWcOR5pJjbuVyTzWIyY8Pfe3oPVZRm5odr5mBXG5iQz'),
+        new todo('Gereja','Minggu','https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT625mz3mff7Sru5LsUldq2VmTYKXHPnkkwuxwUmn7d3H--wM-f')
+    ]
+    const print=(a)=>{
+        console.log(data)
+        let output=''
+        a.forEach((val,index) => { 
+            output+=`<tr>
+                        <td>${index+1+'.'}</td>
+                        <td>${val.activity}</td>
+                        <td>${val.day}</td>
+                        <td><img src=${val.image} height="100px" width="170px"></td>
+                        <td><button onclick="hapus(${index})">delete</button><button onclick="ubah(${index})">Edit</button></td>
+                    </tr>`
+        })
+        document.getElementsByTagName('tbody')[0].innerHTML=output
+    }
+    print(data)
+    const add=()=>{
+        let input=document.getElementsByClassName('addtodo')
+        let newtodo=input[0].value
+        let newday=input[1].value
+        let newimg=input[2].value
+        data.push(new todo(newtodo,newday,newimg))
+        print(data)
+    }
+    const hapus=(index)=>{
+        let hapusAsk=confirm('Are you sure you want to delete this to do?')
+        if(hapusAsk==true){
+            data.splice(index,1)
+            print(data)
+        }else{
+            alert('Cancelled')
+            print(data)
+        }
+    }
+    const ubah=(index)=>{
+        let edit=prompt('Which data do you want to change?\n1. To do\n2. Day\n3. Image\n4. Cancel')
+        if(edit==1){
+            let todoEdit=prompt('Enter new to do activity')
+            data[index].activity=todoEdit
+            print(data)
+        }else if(edit==2){
+            let dayEdit=prompt('Enter new day')
+            data[index].day=dayEdit
+            print(data)
+        }else if(edit==3){
+            let imgEdit=prompt('Enter new image url')
+            data[index].image=imgEdit
+            print(data)
+        }else{
+            print(data)
+        }
+    }
+    const cari=()=>{
+        data=data.filter(a=>a.activity===document.getElementById('cari').value)
+        print(data)
+    }
+    // inside a filter, you will put a function which returns true or false to show only arrays that fit the condition.
+    // (a=>a.activity===document.getElementById('cari').value) is the condition with the 'a' being the function name just like a variable name
+    // so if the activity is the same as the value inputted in the search input (id='cari'), then it shows up
+    // hope that made sense
+</script>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <center>
+        <h1>Parkir</h1>
+        <input id='masuk' type="number" placeholder='jam masuk'>
+        <br><br>
+        <input id='keluar' type='number' placeholder="jam keluar">
+        <br><br>
+        <button id='klik' onclick="tarif(this.value)"> Klik disini </button>
+        <p id='output'></p>
+    </center>
+</body>
+<script>
+    var tarif=()=>{
+        var jammasuk = document.getElementById('masuk').value
+        var jamkeluar = document.getElementById('keluar').value
+        var biaya =''
+        var lama = Math.floor(jamkeluar-jammasuk)
+        var tarif = lama*2000
+        document.getElementById('output').innerHTML=`Anda parkir selama ${lama}, tarif anda menjadi Rp.${tarif}`
+    }
+</script>
+</html>

@@ -1,0 +1,52 @@
+<html>
+    <script>
+    class Produk{
+        constructor(namaproduk, harga){
+            this.namaproduk=namaproduk
+            this.harga=harga
+        }
+    }  
+    var produk=[
+            new Produk('Sushi',15000),
+            new Produk('Ayam',13000),
+            new Produk('Milo', 10000)
+        ]
+    class Cartuser{
+        constructor(namaproduk,harganya,qty){
+            this.namaproduk=namaproduk,
+            this.harganya=harganya,
+            this.qty=qty
+        }
+    }
+    var cart=[]
+    //================function start====================
+    function printProd(a){
+        var output=''
+        for(var i=0;i<a.length;i++){
+            output+=(i+1)+' '+produk[i].namaproduk.toUpperCase()+' Rp.'+produk[i].harga+' ,00\n'
+        }
+        return output
+    }
+    function printCart(cartuser){
+        var output=''
+        if(cart.length==0){
+            return 'Cart kosong, mohon diisi'
+        }
+        for(var i=0;i<cartuser;i++){
+            output+=`${i+1}.${cart[i].namaproduk} dengan harga Rp. ${cart[i].harganya},00 sebanyak ${cart[i].qty} dengan total harga ${cart[i].harganya*cart[i].qty}\n`
+        }
+        return output
+    }
+    function cartStruk (cartuser){
+        var output=printcart(cartuser)+'_________________________________________\n'
+        var totalbelanjaharga = 0
+        for(var i=0;i<cartuser.length;i++){
+            totalbelanjaharga+=(cart[i].qty*cart[i].harganya)
+        }
+        output+=`Total belanja Rp. ${totalbelanjaharga},00`
+        return output
+    }
+//=====================function end======================
+    alert('Selamat datang di website kami!')
+    </script>
+</html>

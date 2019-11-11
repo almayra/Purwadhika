@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <center>
+        <h1>Halo, kamu siapa?</h1>
+          <p> Nama: <input id='Nama' type='text' placeholder="  Masukkan nama kamu">
+              <br>
+          <p> Usia: <input id='Usia' type="number" placeholder="  Masukkan usia kamu">
+              <br>
+          <p> Sex: <input type="radio" name = 'sex' value='Pria'>Pria
+              <input type='radio' name = 'sex' value='Wanita'> Wanita
+              <br><br>
+              <button id='Klik' onclick="fungsi(this.value)"> Klik disini </button>
+              <p id='output'></p>
+          <h1></h1>
+    </center>
+<style> html {background-color: rgba(156, 247, 183, 0.863)};</style>
+</body>
+<script>
+    var fungsi=()=>{
+        var Nama = document.getElementById('Nama').value
+        var Usia = document.getElementById('Usia').value
+        var Gender = ''
+        if(document.getElementsByName('sex')[0].checked){
+            Gender += 'Pria'
+        }else if(document.getElementsByName('sex')[1].checked){
+            Gender += 'Wanita'
+        }
+        document.getElementById('output').innerHTML=`Nama saya ${Nama}, Umur saya ${Usia}, Saya ${Gender}`
+       
+    }
+</script>
+</html>

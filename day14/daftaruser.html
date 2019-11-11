@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=\, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Daftar User</title>
+    <style>
+        tr,td,table{
+            border: 1px double black;
+            border-collapse: collapse;
+            padding: 10px
+        }
+
+        #cover{
+            border: 1px solid;
+            margin: 1em 30em;
+            padding: 10px;
+        }
+        
+    </style>
+</head>
+<body>
+    <center>
+        <h1>Daftar User</h1>
+        <p id="cover">
+            <input class="tambah" type="text" id="nama" placeholder="masukkan nama kamu"><br><br>
+            <input class="tambah" type="number" id="usia" placeholder="masukkan usia kamu"><br><br>
+            Gender: <input type="radio" name = 'sex' value='Pria'>Pria
+            <input type='radio' name = 'sex' value='Wanita'> Wanita<br><br>
+            <input class="tambah" type="text" id="pekerjaan" placeholder="pekerjaan kamu"><br><br>
+            <button onclick="onSubmitClick()">Submit</button><br><br>
+            Sort berdasarkan:<br><br>
+            <button  onclick="buttusia()">Usia</button>
+            <button  onclick="buttgender()">Gender</button>
+            <button  onclick="buttnama()">Nama</button>
+            <button  onclick="buttkerja()">Pekerjaan</button>
+        </p>
+        <h3>List user yang terdaftar</h3>
+        <table>
+            <thead>
+                <tr>
+                    <td>No.</td>
+                    <td>Nama</td>
+                    <td>Usia</td>
+                    <td>Gender</td>
+                    <td>Pekerjaan</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    
+                </tr>
+            </tbody>
+        </table>
+    </center>
+</body>
+<script>
+    class user{
+        constructor(nama,usia,sex,pekerjaan){
+            this.nama=nama
+            this.usia=usia
+            this.sex=sex
+            this.pekerjaan=pekerjaan
+        }
+    }
+    var listUser=[]
+
+    const printData=bebas=>{
+        var output=''
+        for(var i=0;i<bebas.length;i++){
+            output=`<tr>
+                        <td>${index+1}</td>
+                        <td>${bebas[i].nama}</td>
+                        <td>${bebas[i].usia}</td>
+                        <td>${bebas[i].sex}</td>
+                        <td>${bebas[i].pekerjaan}</td>
+                    </tr>`
+        }
+        document.getElementsByName('tbody')[1].innerHTML=output
+    }   
+    const onSubmitClick=()=>{
+        var nama=document.getElementById('nama').value 
+        var usia=document.getElementById('usia').value
+        var gender=''
+        if(document.getElementsByName('sex')[0].checked){
+            gender='Pria'
+        }else if(document.getElementsByName('sex')[1].checked){
+            gender='Wanita'
+        }
+        var pekerjaan=document.getElementById('pekerjaan')
+        printData(user)
+        }
+        const sort=bebas=>{
+            for(var i=user.length-1;i>0;i++){
+                for(var j=0;j<1;j++){
+                    if(user[j][bebas]<user[j+1][bebas]){
+                        var temp=user[j]
+                        user[j]=user[j+1]
+                        user[j+1]=temp
+                    }
+                }
+            }
+            printData(user)
+        }
+</script>
+</html>

@@ -1,0 +1,21 @@
+<html>
+    <script>
+        let tanggal = new Date()
+        var bulan = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
+        miliSecondHariIni = tanggal.getTime();
+        miliSecondPerHariIni = 1000*60*60*24;
+        besok = new Date(miliSecondHariIni + miliSecondPerHariIni);
+        kemarin = new Date(miliSecondHariIni - miliSecondPerHariIni)
+
+        var today = tanggal.getDate()
+        var bulan = tanggal.getMonth()
+        var tahun = tanggal.getFullYear()
+        var tomorrow = besok.getDate()
+        var yesterday = kemarin.getDate()
+
+        document.write('Hari ini tanggal '+ today +'/'+ bulan +'/'+ tahun) 
+        document.write(' Besok tanggal ' + tomorrow + '/' + bulan + '/' + tahun) 
+        document.write(' Kemarin tanggal ' + yesterday + '/' + bulan + '/' + tahun)
+    </script>   
+
+</html>

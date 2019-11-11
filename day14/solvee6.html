@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <label>Masukkan angka :</label><br><br>
+        <input type="text" id="angka" placeholder="Masukkan angka"><br><br>
+        <button onclick="angka()" >Kuadratkan!</button>
+        <h3 id="output"></h3>
+</body>
+<script>
+    const angka=()=>{
+        var input=document.getElementById('angka').value 
+        var hasil = Math.pow(input,2)
+        document.getElementById('output').innerHTML=hasil
+        //nampilin .innerHTML trs buat ngambil nilai .value buat hasil make id aja
+    }
+
+</script>
+</html>

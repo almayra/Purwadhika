@@ -1,0 +1,67 @@
+<!-- TUGAS KUMPULIN TERAKHIR JAM 8 MALAM HARI MINGGU
+KELAS MULAI JAM 9 PAGI HARI SENIN -->
+
+<!-- Bikin variasi belanja
+hasil += "==================
+bikin fungsi cart
+fungsi hargacart
+fungsi qty cart"
+-->
+
+<script>
+var produk=["anggur", "apel", "jeruk"]
+var harga=[1000,2000,3000]
+function printProduk(a){
+    var output=" "
+    for(i=0;i<a.length;i++){
+        output+=(i+1)+"."+produk[i].toUpperCase()+"===> Rp. "+harga[i]+",00\n"
+    }
+    return output
+}
+alert(printProduk(produk))
+do{
+    var menuutama=prompt("1.user\n2.admin\n3.exit")
+    if(menuutama==1){
+
+    }else if(menuutama==2){
+        do{
+        var menuadmin=prompt("1.Tambah data\n2.Update data\n3.Hapus data\n4. Kembali ke menu utama")
+            if(menuadmin==1){
+                do{
+                var newprod=prompt("masukkan produk baru")
+                var newprice=prompt("masukkan harga baru")
+                produk.push(newprod)
+                harga.push(newprice)
+                alert(printProduk(produk))
+                var konfirmasi1=confirm("mau tambah lagi engga?")
+            }while(konfirmasi1)
+
+            }else if(menuadmin==2){
+                do{
+                    alert(printProduk(produk))
+                    // SEHARUSNYA ADA MENU MAU GANTI HARGA AJA ATAU BARANG JUGA
+                    var pilihan=parseInt(prompt(printProduk(produk))+"\nPilih produk ")
+                    var updateProduk=prompt("masukkan nama produk yang kamu mau pilih untuk mengganti produk "+produk[pilihan-1])
+                    var updateConfirm=confirm("yaking enggak mau ganti produk dengan nama"+produk[pilihan-1])
+                    //JANGAN LUPA HAPUS HARGA JUGA!!! SPLICENYA DUA KALI!!! SPLICE DIPAKAI AGAR BISA KITA UBAH POSISINYA, MISALKAN 1, MAKA YANG PERTAMA
+                    if(updateConfirm==true){
+                        produk.splice(pilihan-1,1,updateProduk)
+                        alert(printProduk(produk))
+                    }else{
+                        alert("tidak jadi update")
+                    }
+                    var konfirmasi2="mau ulang update lagi engga"
+                }while(konfirmasi2)
+            }else if(menuadmin==3){
+
+            }else{
+
+            }
+        }while(true)
+    }else{
+        alert("selamat tinggal semoga kembali lagi")
+        break
+    }
+}while(true)
+</script>
+

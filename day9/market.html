@@ -1,0 +1,111 @@
+<html>
+    <script>
+
+        var produk=['Sushi','Ayam','Milo']
+        var harga=[12000,13000,14000]
+        function printProd(a){
+            var output=''
+            for(var i=0;i<a.length;i++){
+                output+=(i+1)+'. '+produk[i].toUpperCase()+' Rp.'+harga[i]+',00 \n'
+    
+            } return output
+        }
+    
+        function belanja(barang, harga, jumlah) {
+            var total = harga * jumlah
+            var output = ''
+            output += barang + ' ' + jumlah + ' kg, dengan harga satuan Rp.' + harga + ', total Rp.' + total + '\n'
+            return  output
+        }
+        function totalSemuanya(harga, jumlah) {
+            var total = harga * jumlah
+            var totalBayar = 0
+            totalBayar += total
+            return totalBayar
+        }
+        function checknama(loginuser){
+        for(i=0;i<datanama.length;i++){
+            if(datanama[i]==loginuser){
+                return true
+            }
+        }
+        return false
+    }
+        alert('Selamat datang di website kami')
+        do {
+            var menuUtama=prompt('Menu:\n1. User\n2. Admin\n3. Keluar')
+            if(menuUtama==1){
+                var output=''
+                totalbayar=0
+                do {
+                    var pilihan=parseInt(prompt(printProd(produk))+'Produk apa yang anda ingin beli?')
+                    var jumlah=parseInt(prompt('Ingin beli berapa banyak?'))
+                    output+= belanja(produk[pilihan-1], harga[pilihan-1], jumlah)
+                    totalBayar+=totalSemuanya(harga[pilihan-1], jumlah)
+                    alert('Berhasil masuk keranjang!')
+                    var belanjalagi = confirm('Ingin belanja lagi?')
+                    if(belanjalagi){
+                        konfbelanja=true
+                    }else{
+                        konfbelanja=false
+                        alert('Daftar belanja:\n'+output+'________________________________________________\n Total belanja'+totalbayar)
+                    }
+                } while (konfbelanja);
+            }else if(menuUtama==2){
+                do {
+                    var masuk = prompt('1. Sudah punya akun admin\n2. Register\n3. Keluar')
+                    if(masuk==1){
+                        var datanama = ['aya', 'cantik']
+                        var login=prompt('Masukkan nama anda')
+                        if(checknama(login)){
+                            alert('Anda berhasil masuk')
+                            do {
+                            var menuadmin =prompt('1. Tambah data\n2. Ubah data\n3. Hapus data\n4. Keluar')
+                            if(menuadmin==1){
+                                do {
+                                    var newprod=prompt('Masukkan nama produk baru:')
+                                    var newprice=parseInt(prompt('Masukkan harga produknya: ')) 
+                                    produk.push(newprod)
+                                    harga.push(newprice)
+                                    alert(printProd(produk))
+                                    var konfirmasi1=confirm('Mau tambah lagi?')
+                                } while (konfirmasi1);
+                            }else if(menuadmin==2){
+                                var konfirmasi2 = true
+                                while(konfirmasi2){
+                                    var update = prompt('Mau Update apa: \n1. Update Nama\n2. Update Harga\n3. Update Nama dan Harga\n4. Kembali')
+                                    if(update==1){
+                                        do {    
+                                        var pilihan = parseInt(prompt('Pilih produk yang ingin anda update:\n'+printProd([produk])))
+                                        var updateprod=prompt('Masukkan nama produk baru untuk menggantikan '+produk[pilihan-1])
+                                        var updateconfirm=confirm('Anda yakin mengganti produk dengan nama '+produk[pilihan-1]+ ' menjadi '+updateprod + '?')
+                                        if(updateconfirm){
+                                            produk.splice(pilihan-1,1,updateprod)
+                                            alert('Daftar Menu:\n'+printProd(produk))
+                                        }else{
+                                            alert('Batal update')
+                                        }
+                                        var konfNamaProduk = confirm('Ingin mengupdate produk lain?')
+                                        if(konfNamaProduk){
+                                            konfirmasi2=false
+                                        }else{
+                                        konfirmasi2=true
+                                        }
+                                    } while (konfNamaProduk);
+                                }else if(update==2){
+
+                                }
+                            }
+                        }
+                    } while (condition);
+                }
+                    }else if(masuk==2){
+                        var register=prompt('Masukkan nama anda')
+                        datanama.push(register)
+                        alert('Anda berhasil daftar, Silakan login kembali')
+                    }
+                } while (true);
+            }
+        } while (true);
+    </script>
+</html>

@@ -1,0 +1,252 @@
+<html>
+    <script>
+        alert('Selamat datang di website kami')
+        do {
+            konfirmasiutama=true
+            var menuUtama = prompt('Menu:\n 1. Belajar \n 2. Belanja \n 3. Segitiga Bintang \n 4. Exit')
+            if(menuUtama==1){
+                var konfirmasi=true
+                while (konfirmasi) {
+                    var menubelajar = prompt('Belajar: \n 1. Luas Segitiga \n 2. Luas Persegi \n 3. Volume balok')
+                    if(menubelajar==1){
+                        var konfirmasialas = true
+                        while (konfirmasialas){
+                            var alassegitiga = parseInt(prompt('Masukkan panjang alas'))
+                            if (alassegitiga>0){
+                                konfirmasialas=false
+                            }else{
+                                alert('Anda salah input')
+                            }
+                        }
+                        var konfirmasitinggi = true
+                        while (konfirmasitinggi) {
+                            var tinggisegitiga = parseInt(prompt('Masukkan tinggi'))
+                            if(tinggisegitiga>0){
+                                konfirmasitinggi=false
+                            }else{
+                                alert('Anda salah input')
+                            }
+                        }
+                        alert('Luas segitiga adalah ' + (0.5*alassegitiga*tinggisegitiga) + 'cm^')
+                    }else if(menubelajar==2){
+                        var konfirmasisisi= true
+                        while (konfirmasisisi) {
+                            var sisi = parseInt(prompt('Masukkan panjang sisi'))
+                            if(sisi>0){
+                                konfirmasisisi=false
+                            }else{
+                                alert('Anda salah input')
+                            }
+                        }
+                        alert('Luas persegi adalah '+(sisi*sisi)+'cm^')
+                    }else if(menubelajar==3){
+                        var konfirmasipanjang = true
+                        while (konfirmasipanjang) {
+                            var panjang = parseInt(prompt('Masukkan panjang balok'))
+                            if(panjang>0){
+                                konfirmasitinggi = false
+                            }else{
+                                alert('Anda salah input')
+                            }
+                        }
+                        var konfirmasilebar=true
+                        while (konfirmasilebar) {
+                            var lebar = parseInt(prompt('Masukkan lebar balok'))
+                            if(lebar>0){
+                                konfirmasilebar=false
+                            }else{
+                                alert('Anda salah input')
+                            }
+                        }
+                        var konfirmasitinggibalok=true
+                        while (konfirmasitinggibalok) {
+                            var tinggi = parseInt(prompt('Masukkan tinggi balok'))
+                            if(tinggi>0){
+                                konfirmasitinggibalok=false
+                            }else{
+                                alert('Anda salah input')
+                            }
+                        }
+                        alert('Volume balok adalah ' + (panjang*lebar*tinggi) )
+                    }
+                    konfirmasi=confirm('Ingin belajar lagi?')
+                }
+            }else if(menuUtama==2){
+                var konfbelanja=true
+                while (konfbelanja) {
+                    var menubelanja = prompt('Menu: \n 1.Sushi \n 2. Milo \n 3. Mashed Potato')
+                    if(menubelanja==1){
+                        var konfberat=true
+                        while (konfberat) {
+                            var berat = parseInt(prompt('Ingin beli berapa banyak?'))
+                            if(berat>0){
+                                konfberat=false
+                            }else{
+                                alert('Anda salah input')
+                            }
+                        }
+                        harga=10000
+                        alert('Anda membeli '+berat+' sushi, total harga menjadi Rp.'+ (harga*berat))
+                    }else if(menubelanja==2){
+                        var konfberat=true
+                        while (konfberat) {
+                            var berat=parseInt(prompt('Ingin beli berapa banyak?'))
+                            if(berat>0){
+                                konfberat=false
+                            }else{
+                                alert('Anda salah input')
+                            }
+                        }
+                        harga=5000
+                        alert('Anda membeli '+berat+' milo, total harga menjadi Rp.'+(harga*berat))
+                    }else if(menubelanja==3){
+                        var konfberat=true
+                        while (konfberat) {
+                            var berat=parseInt(prompt('Ingin beli berapa banyak?'))
+                            if(berat>0){
+                                konfberat=false
+                            }else{
+                                alert('Anda salah input')
+                            }
+                        }
+                        harga=5000
+                        alert('Anda membeli ' + berat + ' mashed potato, total harga menjadi Rp.'+(harga*berat))
+                    }else{
+                        alert('Anda salah input')
+                    }
+                    konfbelanja=confirm('Anda ingin belanja lagi?')
+                }
+
+            }else if(menuUtama==3){
+                var konfbintang = true
+                while(konfbintang){
+                    var menubintang = prompt('Menu: \n 1. Segitiga siku siku \n 2. Segitiga sama kaki')
+                    if(menubintang==1){
+                        var konfalasbintang = true
+                        while (konfalasbintang) {
+                            var alasbintang = (parseInt(prompt('Alas: \n 1. Di atas \n 2. Di bawah')))
+                            if(alasbintang==1){
+                                var tinggisiku = parseInt(prompt('Dengan tinggi ...'))
+                                if(tinggisiku>0){
+                                    alert(segitigasikuatas(tinggisiku))
+                                    konfalasbintang=false
+                                }else{
+                                    alert('Anda salah input')
+                                }
+                            }else if(alasbintang==2){
+                                var tinggisiku1 = parseInt(prompt('Dengan tinggi ...'))
+                                if(tinggisiku1>0){
+                                    alert(segitigasikubawah(tinggisiku1))
+                                    konfalasbintang=false
+                                }else{
+                                    alert('Anda salah input')
+                                }
+                            }
+                        }konfbintang = confirm('Anda ingin membuat segitiga lagi?')
+                    }else if(menubintang==2){
+                        var konfalasbintang1 = true
+                        while (konfalasbintang1) {
+                            var alasbintang1 = (parseInt(prompt('Alas: \n 1. Di atas \n 2. Di bawah')))
+                            if(alasbintang1==1){
+                                var tinggikaki = parseInt(prompt('Dengan tinggi ...'))
+                                if(tinggikaki>0){
+                                    alert(segitigasamakaki(tinggikaki))
+                                    konfalasbintang1=false
+                                }else{
+                                    alert('Anda salah input')
+                                }
+                            }else if(alasbintang1==2){
+                                var tinggikaki1 = parseInt(prompt('Dengan tinggi ...'))
+                                if(tinggikaki1>0){
+                                    alert(segitigakakibalik(tinggikaki1))
+                                    konfalasbintang2=false
+                                }else{
+                                    alert('Anda salah input')
+                                }
+                            }
+                        }konfbintang = confirm('Anda ingin membuat segitiga lagi?')
+                    }
+                }
+            }else if(menuUtama==4){
+                alert('Terima kasih telah mengunjungi website kami')
+                break
+            }else{
+                alert('Anda salah input')
+                break
+            }
+        } while (true);
+
+        function segitigasikuatas(tinggi){
+    let z=''
+    for(let i =0;i<tinggi;i++){
+        for(let j=i;j<tinggi;j++){
+            z+='*'
+        }
+        if(i==tinggi-1){
+            break
+        }       
+        if(i<=tinggi){
+            z+='\n'
+        }
+        
+    }
+    var output=z
+    return output  
+}
+        function segitigasikubawah(tinggi){
+    let x=''
+    for(let a =0;a<tinggi;a++){
+        for(let b=0;b<=a;b++){
+            x+='*'
+        }
+        if(a<tinggi-1){
+            x+='\n'
+        }
+    }
+    var output1=x 
+    return output1  
+    }
+
+        function segitigasamakaki(tinggi){
+    let e = ''
+    for(f=0;f<tinggi;f++){
+        for(g=f;g<tinggi-1;g++){
+            e+=' '
+        }
+        for(h=0;h<=f;h++){
+            e+='*'
+        }
+        for(k=0;k<=f-1;k++){
+            e+='*'
+        }
+        if(f<5-1){
+            e+='\n'
+        }
+    }
+    var output2=e
+    return output2
+}
+        function segitigakakibalik(tinggi){
+    let l = ''
+    for(let m=0;m<tinggi;m++){
+        for(let n=0;n<=m;n++){
+            l+=' '
+        }
+        for(let o=m;o<tinggi;o++){
+            l+='*'
+        }
+        for(let p=m+1;p<tinggi;p++){
+            l+='*'
+        }
+        if(m<5-1){
+            l+='\n'
+        }
+    }
+    var output3=l
+    return output3
+
+}
+
+
+    </script>
+</html>

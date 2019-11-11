@@ -1,0 +1,40 @@
+<html>
+    <script>
+        var konfirmasi = true
+        while(konfirmasi){
+            var hargasatuan = 0
+            var belanja = prompt('Apa buah yang ingin dibeli? \n 1. Apel 2000/kg \n 2. Mangga 1000/kg \n 3. Melon 3000/kg \n 4. Semangka 5000/kg')
+        
+            if(belanja==1){
+                hargasatuan = 2000
+                var berat=parseInt(prompt('Mau beli berapa?'))
+                alert('Anda harus bayar ' + (hargasatuan*berat))
+                konfirmasi=false
+            }else if(belanja==2){
+                hargasatuan = 1000
+                var berat=parseInt(prompt('Mau beli berapa?'))
+                alert('Anda harus bayar ' + (hargasatuan*berat))
+                konfirmasi=false
+            }else if(belanja==3){
+                hargasatuan = 3000
+                var berat = parseInt(prompt('Mau beli berapa?'))
+                alert('Anda harus bayar ' + (hargasatuan*berat))
+                konfirmasi = false
+            }else if(belanja==4){
+                hargasatuan = 5000
+                var berat = parseInt(prompt('Mau beli berapa?'))
+                alert('Anda harus bayar ' + (hargasatuan*berat))
+                konfirmasi = false
+            }else{
+                alert('Anda salah input')
+                konfirmasi=confirm('Anda ingin belanja atau tidak?')
+                if(konfirmasi){
+                    alert('Ayo belanja')
+                }else{
+                    alert('Anda miskin')
+                }
+            }
+        }
+        
+    </script>
+</html>

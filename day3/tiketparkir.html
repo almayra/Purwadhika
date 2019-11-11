@@ -1,0 +1,28 @@
+<html>
+    <script>
+        do{
+            var masuk = parseInt(prompt('Anda masuk pada jam..'))
+            var jamMasuk = prompt('AM/PM?')
+            var keluar = parseInt(prompt('Anda keluar pada jam..'))
+            var jamKeluar = prompt('AM/PM?')
+            var lama = 0
+            if(jamMasuk == 'AM' && jamKeluar == 'PM'){
+                keluar += 12
+                lama = keluar-masuk
+            }else if(jamMasuk == 'PM' && jamKeluar == 'AM'){
+                masuk = 12 - masuk
+                lama = keluar+masuk
+            }else if(jamMasuk == 'AM' && jamKeluar == 'AM' || jamMasuk == 'PM' && jamKeluar == 'PM'){
+                lama = keluar-masuk
+            }
+            if(lama==1){
+                tarif = 3000
+            }else if(lama>1){
+                var tarif = 3000 + ((lama-1)*1000)
+            }
+            alert('Anda parkir selama '+ lama + ' jam, biaya parkir anda menjadi Rp.' + tarif)
+
+        }while(!masuk || !keluar)
+            
+    </script>
+</html>

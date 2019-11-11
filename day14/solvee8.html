@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+        <label>Ketik Kalimat    :</label>
+        <input type="text" id="kalimat"><br><br>
+        <label>Karakter yang dicari:</label>
+        <input type="text" id="karakter"><br><br>
+        <button onclick="cari()" >Cari!</button>
+        <h3 id="output"> </h3>
+</body>
+<script>
+    const cari=()=>{
+        var text=document.getElementById('kalimat').value 
+        var karak=document.getElementById('karakter').value
+        var jumlah=0
+        for(i=0;i<text.length;i++){
+            if(text[i]==karak){
+                jumlah++
+            }
+        }
+        document.getElementById('output').innerHTML=`Jumlah ${karak} adalah ${jumlah}`
+    }
+</script>
+</html>

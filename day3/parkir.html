@@ -1,0 +1,15 @@
+<html>
+    <script>
+        var masuk = prompt('Anda datang pada jam ...')
+        masuk=parseInt(masuk)
+        var keluar = prompt('Anda keluar pada jam ...')
+        keluar=parseInt(keluar)
+        if(keluar<masuk){
+            keluar+=12
+        }
+    
+        var total = keluar-masuk
+        var biaya = total*1000
+        alert('Anda parkir selama ' + total + ' jam, biaya parkir anda menjadi Rp.'+ biaya)
+    </script>
+</html>

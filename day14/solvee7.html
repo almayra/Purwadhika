@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <label>Masukkan angka 1:</label>
+    <input type="text" id="angka1"><br><br>
+    <label>Masukkan angka 2:</label>
+    <input type="text" id="angka2"><br><br>
+    <button onclick="pangkat()" >Pangkatkan!</button>
+    <h3 id="output"> </h3>
+</body>
+<script>
+    const pangkat=()=>{
+        var input1=document.getElementById('angka1').value 
+        var input2=document.getElementById('angka2').value
+        var hasil = Math.pow(input1,input2)
+        document.getElementById('output').innerHTML=`Hasilnya adalah ${input1}<sup>${input2}</sup>=${hasil}`
+    }
+</script>
+</html>

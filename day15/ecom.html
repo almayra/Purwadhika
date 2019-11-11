@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Supermarket</title>
+    <style>
+        tr,td,table{
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <center>
+        <h1>E-Commerce</h1>
+        <table>
+            <thead>
+                <tr>
+                    <td>Produk</td>
+                    <td>Harga</td>
+                    <td>Gambar Produk</td>
+                    <td>Action</td>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table><br>
+        <br>
+        <h2></h2>
+        <table>
+            <tbody>
+
+            </tbody>
+        </table>
+        <p></p>
+    </center>
+</body>
+<script>
+    class product{
+        constructor(a,b,c){
+            this.produk=a,
+            this.price=b,
+            this.img=c
+        }
+    }
+let data=[
+    new product('Milo','9000','https://tse3.mm.bing.net/th?id=OIP.J7mk3SVy5LSV0Oru8EMi0AHaHa&pid=Api&P=0&w=300&h=300'),
+    new product('Sushi','12000','https://tse4.mm.bing.net/th?id=OIP.TzEhw55uCx_lOzZgtCHhdQHaFE&pid=Api&P=0&w=232&h=160'),
+    new product('Pizza','15000','https://tse3.mm.bing.net/th?id=OIP.rxdf2Qk9S2dD-zUZkGvwiAHaE9&pid=Api&P=0&w=240&h=161')
+]
+var cart=[]
+const print=(a)=>{
+    let output=''
+    a.forEach((val,index) => {
+        output+=`<tr>
+                    <td>${val.produk}</td>
+                    <td>${val.price}</td>
+                    <td><img src=${val.img} height='100px'/></td>
+                    <td><button onclick="addtocart(${index})">Add to cart</button></td>
+                </tr>`
+    })
+    document.getElementsByTagName('tbody')[0].innerHTML=output
+}
+print(data)
+
+const printcart=(a)=>{
+    let output=''
+    a.forEach((val,index) => {
+        output+=`<tr>
+                    <td>${val.produk}</td>
+                    <td>${val.price}</td>
+                    <td><img src=${val.img} height='100px'/></td>
+                    <td><button onclick="hapus(${index})">Delete</button></td>
+                </tr>`
+    });
+    document.getElementsByTagName('tbody')[1].innerHTML=output
+    document.getElementsByTagName('p')[0].innerHTML=`<br><button onclick="buy()">Checkout</button>`
+}
+
+let keranjang=0
+addtocart=(a)=>{
+    keranjang+=1
+    var produk=data[a].produk
+    var price=data[a].price
+    var img=data[a].img
+    document.getElementsByTagName('h2')[0].innerHTML=`Keranjang anda ada ${keranjang}`
+    cart.push(new product(produk,price,img))
+    printcart(cart)
+    console.log(cart)
+}
+
+const hapus=(index)=>{
+    keranjang-=1
+    cart.splice(index,1)
+    document.getElementsByTagName('h2')[0].innerHTML=`Keranjang anda ada ${keranjang}`
+    printcart(cart)
+}
+
+const buy=(a)=>{
+    
+}
+
+</script>
+</html>

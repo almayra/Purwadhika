@@ -1,0 +1,51 @@
+<html>
+    <script>
+        while(true){
+            var masuk=parseInt(prompt('Anda masuk parkir pada jam..'))
+            if(masuk > 0 && masuk<= 12){
+        //konfirmasi=false
+        break
+            }
+        }do {
+            var konfirmasi = true
+            var kondisi1 = prompt('1.AM \n 2.PM')
+            if(kondisi1 ==1 || kondisi2==2){
+                konfirmasi=false
+            }else{
+                alert('anda salah input')
+            }
+            
+        } while (konfirmasi);
+        while(true){
+            var keluar = parseInt(prompt('Anda keluar pada jam..'))
+            if(keluar>=1&&keluar<13){
+                break
+            }else{
+                alert('Anda salah input')
+            }
+        }do {
+            var konfirmasi1 = true
+            var kondisi2 = prompt('1.AM \n 2.PM')
+            if(kondisi2 ==1 || kondisi2==2){
+            konfirmasi1=false
+            }else{
+                alert('Salah input')
+            }
+        } while (konfirmasi1);
+        if(masuk>=keluar&&kondisi1!=kondisi2){
+            keluar+=12
+        }else if(kondisi1==kondisi2&&masuk>=keluar){
+            keluar+=24
+        }
+        var lamaparkir=keluar-masuk
+        var biaya = 0
+        if (lamaparkir<2) {
+            biaya=3000
+        } else {
+            biaya=(((lamaparkir-1)*1000)+3000)
+        }
+        alert('Anda parkir selama ' + lamaparkir +' jam, tarif anda menjadi Rp.' + biaya)
+            
+    
+    </script>
+</html>

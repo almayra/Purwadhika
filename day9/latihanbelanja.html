@@ -1,0 +1,95 @@
+<html>
+    <script>
+        //menuawal=prompt-->login sebagai: 1. admin 2. user 3. exit
+        //if menuawal=1
+            //menuadmin=prompt-->1. tambah produk 2. hapus produk 3. edit harga
+        //if menuawal=2
+            //menubelanja=prompt-->belanja: 1. anggur 2. apel 3. jeruk
+            //jumlah=prompt-->beli brp kilo?
+            //konfirmasi=confirm-->belanja lagi?
+                //yes-->back to menubelanja-->push to array (function)
+        
+        function check(login){
+            for(i=0; i<password.length; i++){
+                if(password[i]==login){
+                    return true
+                }
+            }
+            return false
+        }
+        const password=['nata']
+        
+        let produk=['Anggur','Apel','Jeruk']
+        let harga=[20000,15000,18000]
+        function print(paramproduk,paramharga){
+            const output=''
+            for(i=0; i<paramproduk.length; i++){
+                output+=(i+1) + '. ' + produk[i] + ' - Rp.' + harga[i] + '\n'
+            }
+            return output
+        }
+        function addproduk(nama){
+            produk.push(nama)
+        }
+        function addharga(nilai){
+            harga.push(nilai)
+        }
+        function erase(nama){
+            produk.splice(nama-1,1) // parseInt inputnya
+            harga.splice(nama-1,1)
+        }
+        function edit(posisi, nilai){
+            harga.splice(posisi-1,1,nilai)
+        }
+
+        const menuawal=prompt('Selamat datang di website kami! \nLog in sebagai: \n1. Admin \n2. User \n3. Exit')
+        if(menuawal==1){
+            const admin=prompt('Silahkan masukkan kata sandi')
+            if(check(admin)){
+                alert('Log in berhasil')
+                let loopmenua=true
+                const menuadmin=prompt('Apa yang ingin anda lakukan? \n1. Tambah data \n2. Hapus data \n3. Ubah harga \n4. Log out')
+                if(menuadmin==1){
+                    const tambahnama=prompt('Silahkan masukkan nama produk yang ingin ditambah')
+                    addproduk(tambahnama)
+                    const tambahnilai=prompt('Silahkan masukkan harga '+tambahnama)
+                    addharga(tambahnilai)
+                    const hasiltambah=alert('Data berhasil ditambah:'+'\n'+print(produk,harga))
+                }else if(menuadmin==2){
+                    const hapusdata=parseInt(prompt('Silahkan pilih data yang ingin dihapus:'+'\n'+print(produk,harga))) 
+                    erase(hapusdata)
+                    const hasilhapus=alert('Data berhasil dihapus:'+'\n'+print(produk,harga))   
+                }else if(menuadmin==3){
+                    const hargalama=parseInt(prompt('Silahkan pilih harga produk yang ingin diubah:'+'\n'+print(produk,harga)))
+                    const hargabaru=prompt('Silahkan masukkan harga baru produk:')
+                    edit(hargalama,hargabaru)
+                    const hasilubah=alert('Data berhasil diubah:'+'\n'+print(produk,harga)) 
+                }
+            }else{
+                alert('Kata sandi salah')
+            }
+        }if(menuawal==2){
+            let cartproduk=[]
+            let cartjumlah=[]
+            function carta(produk){
+                cartproduk.push(produk)
+            }
+            function cartb(jumlah){
+                cartjumlah.push(jumlah)
+            }
+            function receipt(barang,kilo) {
+                const output=''
+                for(i=0; i<barang.length; i++){
+                    output+=(i+1) + '. ' + carta[i] + ' ' + cartb[i] + '\n'
+                }
+                return output
+            }
+            const menuuser=prompt('Berikut adalah produk kami. Apa yang ingin anda beli?'+print(produk,harga))
+            cartproduk(menuuser)
+            const belanja=prompt('Berapa kilogram '+menuuser+' yang ingin dibeli?')
+            cartjumlah(belanja)
+            const total=alert('Anda membeli:'+'\n'+receipt(cartproduk,cartjumlah))
+        }
+
+    </script>
+</html>

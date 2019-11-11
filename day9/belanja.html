@@ -1,0 +1,158 @@
+<script>
+    var produk=['Anggur','Apel','Jeruk']
+    var harga=[12000,13000,14000]
+    function printProd(a){
+        var output=''
+        for(var i=0;i<a.length;i++){
+            output+=(i+1)+'. '+produk[i].toUpperCase()+' Rp.'+harga[i]+',00 \n'
+
+        } return output
+    }
+
+    function belanja(barang, harga, jumlah) {
+        var total = harga * jumlah
+        var output = ''
+        output += barang + ' ' + jumlah + ' kg, dengan harga satuan Rp.' + harga + ', total Rp.' + total + '\n'
+        return  output
+    }
+    function totalSemuanya(harga, jumlah) {
+        var total = harga * jumlah
+        var totalBayar = 0
+        totalBayar += total
+        return totalBayar
+    }
+
+
+    alert( 'Selamat Datang' )
+    do {
+        var menuutama=prompt('Pilih Menu: \n1. User\n2. Admin\n3. Keluar')
+        if(menuutama==1){
+            var output = ''
+            var totalBayar = 0
+            do {
+                var pilihan = parseInt(prompt(printProd(produk)+ '\nMau beli apa?'))
+                var jumlah = parseInt(prompt('Beli berapa kilogram?'))
+                output += belanja(produk[pilihan-1], harga[pilihan-1], jumlah)
+                totalBayar += totalSemuanya(harga[pilihan-1],jumlah)
+                alert('Berhasil disimpan di keranjang!')
+                var belanjaLagi = confirm('Belanja lagi?')
+                if (belanjaLagi) {
+                    konfBelanja = true
+                } else {
+                    konfBelanja = false
+                    alert( 'Daftar Belanja Kamu:\n' +output +  '=============================================\nTotal Semuanya: \nRp.' + totalBayar)
+                }
+                
+            } while (konfBelanja);
+    
+        }else if(menuutama==2){
+            do {
+                var menuadmin=prompt('1. Tambah data\n2. Update data\n3. Hapus data\n4. Menu utama')
+                if(menuadmin==1){
+                    do {
+                        var newprod=prompt('Masukkan nama produk baru')
+                        var newprice=parseInt(prompt('Masukkan harga produknya: ')) 
+                        produk.push(newprod)
+                        harga.push(newprice)
+                        alert(printProd(produk))
+                        var konfirmasi1=confirm('Mau tambah lagi?')
+                    } while (konfirmasi1);  
+                }
+                else if(menuadmin==2){
+                    var konfirmasi2 = true
+                    while (konfirmasi2) {
+                        var updateApa = prompt('Mau Update apa: \n1. Update Nama\n2. Update Harga\n3. Update Nama dan Harga\n4. Back')
+                        if (updateApa == 1) {
+                            do {
+                                // alert('Daftar Menu: \n' + printProd(produk))
+                                var pilihan=parseInt(prompt( 'Pilih Produk yang mau di update: \n'+ printProd(produk))) 
+                                var updateprod=prompt('Masukkan nama produk baru untuk menggantikan '+produk[pilihan-1])
+                                var updateconfirm=confirm('Yakin mengganti produk dengan nama '+produk[pilihan-1]+ ' menjadi '+updateprod + '?')
+                                if(updateconfirm){
+                                    produk.splice(pilihan-1,1,updateprod)
+                                    alert( 'Daftar Menu:\n' + printProd(produk))
+                                }else{
+                                    alert('Tidak jadi update')
+                                }
+                                var konfNamaProduk=confirm('Mau update nama produk yang lain lagi?')
+                                if (konfNamaProduk) {
+                                    konfirmasi2 = false
+                                } else {
+                                    konfirmasi2 = true
+                                }
+                            } while (konfNamaProduk);
+                        } 
+                        else if (updateApa == 2) {
+                            do {
+                                // alert('Daftar Menu: \n' + printProd(produk))
+                                var pilihan=parseInt(prompt( 'Pilih Produk yang mau di update: \n'+ printProd(produk))) 
+                                var updateHarga=prompt('Masukkan harga baru untuk menggantikan harga '+produk[pilihan-1] + ' yang lama: ')
+                                var updateconfirm=confirm('Yakin mengganti harga produk dengan nama '+produk[pilihan-1]+ ' dari harga Rp.' +harga[pilihan-1] +' menjadi Rp.'+updateHarga + '?')
+                                if(updateconfirm){
+                                    harga.splice(pilihan-1,1,updateHarga)
+                                    alert( 'Daftar Menu:\n' + printProd(harga))
+                                }else{
+                                    alert('tidak jadi update')
+                                }
+                                var konfHargaProduk=confirm('Mau update harga produk yang lain lagi?')
+                                if (konfHargaProduk) {
+                                    konfirmasi2 = false
+                                } else {
+                                    konfirmasi2 = true
+                                }
+                            } while (konfHargaProduk);
+                        } else if (updateApa == 3) {
+                            do {
+                                // alert('Daftar Menu: \n' + printProd(produk))
+                                var pilihan=parseInt(prompt( 'Pilih Produk yang mau di update: \n'+ printProd(produk)))
+                                var updateprod=prompt('Masukkan nama produk untuk menggantikan '+produk[pilihan-1]) 
+                                var updateHarga=prompt('Masukkan harga baru untuk menggantikan harga '+produk[pilihan-1] + ' yang lama: ')
+                                var updateconfirm=confirm('Yakin mengganti harga produk dengan nama '+produk[pilihan-1]+ ' dari harga Rp.' +harga[pilihan-1] +' menjadi ' + updateprod + ' dengan harga Rp.' + updateHarga + '?')
+                                if(updateconfirm){
+                                    produk.splice(pilihan-1,1,updateprod)
+                                    harga.splice(pilihan-1,1,updateHarga)
+                                    alert( 'Daftar Menu:\n' + printProd(harga))
+                                }else{
+                                    alert('Tidak jadi update')
+                                }
+                                var konfUpdate=confirm('Mau update produk yang lain lagi?')
+                                if (konfUpdate) {
+                                    konfirmasi2 = false
+                                } else {
+                                    konfirmasi2 = true
+                                }
+                            } while (konfUpdate);
+                            
+                        } else if (updateApa == 4) {
+                            break
+                        }
+                    }
+                }
+                else if(menuadmin==3){
+                    do {
+                        // alert(printProd(produk))
+                        var pilihan=parseInt(prompt('Masukkan product untuk dihapus: \n' + printProd(produk)))
+                        // var deleteprod = prompt('masukkan nama product untuk dihapus '+produk[pilihan-1])   
+                        var deleteconfirm=confirm('Yakin ingin menghapus '+produk[pilihan-1] + '?')
+                        if(deleteconfirm){
+                                produk.splice(pilihan-1,1)
+                                alert('Daftar Menu:\n' +printProd(produk))
+                        }else{
+                            alert('Tidak jadi hapus')
+                        }
+                        var konfirmasi3 = confirm('Mau hapus lagi?')
+                    } while (konfirmasi3);
+                }else{
+                    break
+                }
+            } while (true);
+        }else{
+            alert('Selamat tinggal, semoga kembali lagi')
+            break
+        }
+    } while (true);
+    
+    
+    
+    
+    </script>
