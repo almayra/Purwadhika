@@ -23,4 +23,4 @@ var filter=(arr,b)=>{
     }
     return output
 }
-console.log(filter(arr,(val)=>val>4))
+// console.log(filter(arr,(val)=>val>4))
