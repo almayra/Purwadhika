@@ -48,26 +48,27 @@
         }
     }
 let data=[
-    new product('Milo','9000','https://tse3.mm.bing.net/th?id=OIP.J7mk3SVy5LSV0Oru8EMi0AHaHa&pid=Api&P=0&w=300&h=300'),
-    new product('Sushi','12000','https://tse4.mm.bing.net/th?id=OIP.TzEhw55uCx_lOzZgtCHhdQHaFE&pid=Api&P=0&w=232&h=160'),
-    new product('Pizza','15000','https://tse3.mm.bing.net/th?id=OIP.rxdf2Qk9S2dD-zUZkGvwiAHaE9&pid=Api&P=0&w=240&h=161')
+    new product('Milo',9000,'https://tse3.mm.bing.net/th?id=OIP.J7mk3SVy5LSV0Oru8EMi0AHaHa&pid=Api&P=0&w=300&h=300'),
+    new product('Sushi',12000,'https://tse4.mm.bing.net/th?id=OIP.TzEhw55uCx_lOzZgtCHhdQHaFE&pid=Api&P=0&w=232&h=160'),
+    new product('Pizza',15000,'https://tse3.mm.bing.net/th?id=OIP.rxdf2Qk9S2dD-zUZkGvwiAHaE9&pid=Api&P=0&w=240&h=161')
 ]
 var cart=[]
 const print=(a)=>{
     let output=''
     a.forEach((val,index) => {
         output+=`<tr>
-                    <td>${val.produk}</td>
-                    <td>${val.price}</td>
-                    <td><img src=${val.img} height='100px'/></td>
-                    <td><button onclick="addtocart(${index})">Add to cart</button></td>
-                </tr>`
-    })
-    document.getElementsByTagName('tbody')[0].innerHTML=output
-}
-print(data)
-
-const printcart=(a)=>{
+            <td>${val.produk}</td>
+            <td>${val.price}</td>
+            <td><img src=${val.img} height='100px'/></td>
+            <td><button onclick="addtocart(${index})">Add to cart</button></td>
+            </tr>`
+        })
+        document.getElementsByTagName('tbody')[0].innerHTML=output
+    }
+    print(data)
+    
+    const printcart=(a)=>{
+    let totalharga=0
     let output=''
     a.forEach((val,index) => {
         output+=`<tr>
@@ -76,33 +77,43 @@ const printcart=(a)=>{
                     <td><img src=${val.img} height='100px'/></td>
                     <td><button onclick="hapus(${index})">Delete</button></td>
                 </tr>`
+                totalharga+= val.price
     });
     document.getElementsByTagName('tbody')[1].innerHTML=output
-    document.getElementsByTagName('p')[0].innerHTML=`<br><button onclick="buy()">Checkout</button>`
+    document.getElementsByTagName('p')[0].innerHTML=`<br><br><button onclick="buy()">Checkout</button>`
+    document.getElementsByTagName('h2')[0].innerHTML=`Keranjang anda ada ${keranjang}, total harga sebesar Rp.${totalharga}`
 }
 
-let keranjang=0
+let keranjang=''
 addtocart=(a)=>{
-    keranjang+=1
+    keranjang++
     var produk=data[a].produk
     var price=data[a].price
     var img=data[a].img
-    document.getElementsByTagName('h2')[0].innerHTML=`Keranjang anda ada ${keranjang}`
     cart.push(new product(produk,price,img))
     printcart(cart)
     console.log(cart)
 }
 
 const hapus=(index)=>{
-    keranjang-=1
+    keranjang--
     cart.splice(index,1)
     document.getElementsByTagName('h2')[0].innerHTML=`Keranjang anda ada ${keranjang}`
     printcart(cart)
 }
 
-const buy=(a)=>{
-    
+var total=0
+const totalharga=(index)=>{
+    for(var i=0;i<index.length;i++){
+        total+=cart[i].price
+    }
+    return total
 }
+
+const buy=()=>{
+    document.getElementsByTagName('p')[0].innerHTML=`<br><br><input id='uang' type='number' placeholder-"masukkan nominal"><button onclick='btnBayar()'>Bayar disini</button>`
+}
+
 
 </script>
 </html>
