@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <center>
+        <h1>Login and Register</h1>
+        Username : <input type="text" id="username"><br><br>
+        Password : <input type="password" id="password"><br><br>
+        <button onclick="regis()">Register</button> &nbsp; <button onclick="loginuser()">Login</button>
+        <h1></h1>
+        <h1></h1>
+        <p></p>
+    </center>
+</body>
+<script>
+    class admin{
+        constructor(a,b,c ){
+            this.username=a
+            this.password=b
+            this.role=c
+        }
+    }
+    let data=[
+        new admin('aya','zamy','admin'),
+        new admin('rere','jelek','user'),
+    ]
+
+    var datauser={}
+
+    const loginuser=()=>{
+        var username=document.getElementById('username').value 
+        var password=document.getElementById('password').value
+        // var login=false
+        // for(var i=0;i<datauser.length;i++){
+        //     if(username==datauser[i].username&&password==datauser[i].password){
+        //         login=true
+        //         datauser=data[i]
+        //     }
+        // }
+        var arrbaru=data.filter((val)=>val.username==username&&val.password==password)
+        datauser=arrbaru[0]
+
+        if(datauser){
+            document.getElementsByTagName('h1')[1].innerHTML=datauser.username
+            if(datauser.role=='admin'){
+                document.getElementsByTagName('h1')[2].innerHTML='sebagai admin cantik'
+            }else{
+                document.getElementsByTagName('h1')[2].innerHTML='sebagai user jelek banget'
+            }
+            document.getElementsByTagName('p')[0].innerHTML=`<button onclick()="logoutuser()">logout</button`
+        }else{
+            document.getElementsByTagName('h1')[1].innerHTML='user dan password kamu salah'
+            document.getElementsByTagName('h1')[2].innerHTML=''
+            document.getElementsByTagName('p')[0].innerHTML=''
+        }
+    }
+
+    const logoutuser=()=>{
+        datauser={}
+        document.getElementsByTagName('h1')[1].innerHTML='user dan password kamu salah'
+        document.getElementsByTagName('h1')[2].innerHTML=''
+        document.getElementsByTagName('p')[0].innerHTML=''
+    }
+
+    const regis=()=>{
+        var username=document.getElementById('username').value 
+        var password=document.getElementById('password').value
+        data.push(new admin(username,password,'user'))
+        document.getElementsByTagName('h1')[1].innerHTML='berhasil register'
+    }
+</script>
+</html>
