@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Madding</title>
+    <style>
+            tr,td,table{
+                border: 1px solid black;
+                border-collapse: collapse;
+                padding: 10px;
+            }
+    </style>
+</head>
+<body>
+    <center>
+        <h1>Madding</h1>
+        Username : <input type="text" id="username"><br><br>
+        Password : <input type="password" id="password"><br><br>
+        <button onclick="loginuser()">Login</button><br><br>
+        <table>
+                <thead> 
+                    <tr>
+                        <td>No.</td>
+                        <td>Kegiatan</td>
+                        <td>Hari</td>
+                        <td>Poster</td>
+                        <td>Act</td>
+                    </tr>
+                </thead>
+                <tbody>
+    
+                </tbody>
+            </table><br><br>
+            <p></p>
+            <h3></h3>
+    </center>
+</body>
+<script>
+    class admin{
+        constructor(a,b,c){
+            this.username=a
+            this.password=b
+            this.role=c
+        }
+    }
+    let dataadmin=[
+        new admin('aya','123','admin'),
+        new admin('rere','234','user')
+    ]
+
+    var datauser={}
+
+    class todo{
+        constructor(e,f,g){
+            this.activity=e
+            this.day=f
+            this.img=g
+        }
+    }
+    let data=[
+        new Todo('Tidur','Senin',`https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTK6KhN6f-M1llwdVm_fEJEg9ITzuvZp2no0hdlIi-uGyVLqUYu`),
+        new Todo('Jalan','Selasa',`https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcST5tmWP8AzQHzWTRPYi_i8LVNAzn-S4rFGowur8AmWrkfOuIbR`),
+        new Todo('Nongkrong','Sabtu',`https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRzrdmUPQwYd4jkfe148MlH1tkn4Dq7-algU9qtiBfwTxAucZap`),
+    ]
+
+    const loginuser=()=>{
+        var username=document.getElementById('username').value 
+        var password=document.getElementById('password').value
+        var arrbaru=data.filter((val)=>val.username==username&&val.password==password)
+        datauser=arrbaru[0]
+
+    if(datauser){
+        if(datauser.role=='admin'){
+            document.getElementsByTagName('tbody')[0].innerHTML=printadmin()
+        }else if(datauser.role=='user'){
+            document.getElementsByTagName('tbody')[0].innerHTML=printuser()
+        }
+            document.getElementsByTagName('p')[0].innerHTML=`<button onclick()="logoutuser()">logout</button`
+        }
+
+    }
+
+
+        
+    const printuser=(a)=>{
+    let output=''
+    a.forEach((val,index) => {
+        output`<tr>
+                <td>${index+1+'.'}</td>
+                <td>${val.activity}</td>
+                <td>${val.day}</td>
+                <td><img src=${val.img} height="100px" width="170px"></td>
+                </tr>
+                <button onclick="logoutuser()">Logout</button>`
+        });
+        document.getElementsByTagName('tbody')[0].innerHTML=output
+    }
+    print(data)
+            
+    const printadmin=(a)=>{
+        let output=''
+        a.forEach((val,index) => {
+        output+=`<tr>
+                <td>${index+1+'.'}</td>
+                <td>${val.activity}</td>
+                <td>${val.day}</td>
+                <td><img src=${val.img} height="100px" width="170px"></td>
+                <td><button onclick="hapus(${index})">delete</button><button onclick="ubah(${index})">Edit</button></td>
+                </tr>
+                <td><button onclick="logoutuser()">Logout</button>`
+        });
+        document.getElementsByTagName('tbody')[0].innerHTML=output
+    }
+    print(data)
+                    
+    const hapus=(index)=>{
+        let hapusAsk=confirm('Are you sure you want to delete this to do?')
+        if(hapusAsk==true){
+            data.splice(index,1)
+            print(data)
+        }else{
+            alert('Cancelled')
+            print(data)
+        }
+    }
+    
+    const ubah=(index)=>{
+        let edit=prompt('Which data do you want to change?\n1. To do\n2. Day\n3. Image\n4. Cancel')
+        if(edit==1){
+            let todoEdit=prompt('Enter new to do activity')
+            data[index].activity=todoEdit
+            print(data)
+        }else if(edit==2){
+            let dayEdit=prompt('Enter new day')
+            data[index].day=dayEdit
+            print(data)
+        }else if(edit==3){
+            let imgEdit=prompt('Enter new image url')
+            data[index].img=imgEdit
+            print(data)
+        }else{
+            print(data)
+        }
+    }
+    
+    const logoutuser=()=>{
+        datauser={}
+        document.getElementsByTagName('tbody')[0].innerHTML[0]=''
+        document.getElementsByTagName('h3')[0].innerHTML=''
+    }
+    
+</script>
+</html>
